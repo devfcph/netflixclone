@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import requests from '../Request'
-import axios from 'axios'
-
-
+import React, { useEffect, useState } from "react";
+import requests from "../Request";
+import axios from "axios";
+import { getRandom } from "../utils/utils";
 
 const Main = () => {
-    const [movies, setMovies] = useState([]) 
+  const [movies, setMovies] = useState([]);
 
-    useEffect(() => {
-        axios.get(requests.requestPopular).then((response) => {
-            setMovies(response.data.results)
-        })
-    }, [])
+  const movie = movies[getRandom(movies.length)];
+  useEffect(() => {
+    axios.get(requests.requestPopular).then((response) => {
+      setMovies(response.data.results);
+    });
+  }, []);
 
-    console.log(movies)
+  console.log(movie);
+  
 
-  return (
-    <div>Main</div>
+  return <div>Main</div>;
+};
 
-
-
-  )
-}
-
-export default Main
+export default Main;
