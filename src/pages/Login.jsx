@@ -20,6 +20,7 @@ const Login = () => {
       const response = await logIn(email, password);
       console.log("La respuesta del login: ");
       console.log(response);
+      console.log(user);
       navigate("/");
     } catch (error) {
       console.log(error);
