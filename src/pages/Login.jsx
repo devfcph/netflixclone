@@ -12,12 +12,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    console.log(user);
     try {
       if (email === "" || password === "") {
         alert("Plase, complete the fields");
         return;
       }
-      await logIn(email, password);
+      user = await logIn(email, password);
+      console.log(user);
       navigate("/");
     } catch (error) {
       console.log(error);

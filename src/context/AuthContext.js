@@ -21,7 +21,7 @@ export function AuthContextProvider({ children }) {
   }
 
   function logIn(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+   return signInWithEmailAndPassword(auth, email, password);
   }
 
   function logOut() {
