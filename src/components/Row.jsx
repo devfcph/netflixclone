@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-//import Movie from './Movie';
+import Movie from './Movie';
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import axios from "axios";
 
@@ -34,7 +34,9 @@ const Row = ({ title, fetchURL, rowID }) => {
           id={"slider" + rowID}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
-          <h5 className="text-white">{movies.map((item, id) => item.title )} </h5>
+           {movies.map((item, id) => (
+            <Movie key={id} item={item} />
+          ))}
         </div>
         <MdChevronRight
           onClick={slideRight}

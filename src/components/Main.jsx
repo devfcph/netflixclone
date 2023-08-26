@@ -11,7 +11,6 @@ const Main = () => {
       setMovies(response.data.results);
     });
   }, []);
-  
 
   return (
     <div className="w-full h-[600px] text-white">
