@@ -15,8 +15,7 @@ const Signup = () => {
         alert("Plase, complete the fields");
         return;
       }
-      var response = await signUp(email, password);
-      console.log(response);
+      await signUp(email, password);
       console.log(user);
       navigate("/");
     } catch (error) {
