@@ -7,6 +7,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
+import { isValidPassword } from "../utils/utils";
+import { ERROR } from "../error/Error";
 
 const AuthContext = createContext();
 
@@ -14,14 +16,22 @@ export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
   function signUp(email, password) {
-    createUserWithEmailAndPassword(auth, email, password);
-    setDoc(doc(db, "users", email), {
-      savedShows: [],
-    });
+    try {
+      if (isValidPassword(password)) {
+        const response = createUserWithEmailAndPassword(auth, email, password);
+        setDoc(doc(db, "users", email), {
+          savedShows: [],
+        });
+        return response;
+      }
+      else throw new Error(ERROR.PASSWORD_TOO_SHORT);
+    } catch (exception) {
+      throw new Error(exception);
+    }
   }
 
   function logIn(email, password) {
-   return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password);
   }
 
   function logOut() {

@@ -6,24 +6,16 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { user, logIn } = UserAuth();
+  const { logIn } = UserAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      if (email === "" || password === "") {
-        alert("Plase, complete the fields");
-        return;
-      }
-      const response = await logIn(email, password);
-      console.log("La respuesta del login: ");
-      console.log(response);
-      console.log(user);
+      await logIn(email, password);
       navigate("/");
     } catch (error) {
-      console.log(error);
       setError(error.message);
     }
   };
